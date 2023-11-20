@@ -38,6 +38,7 @@ class GithubViewModel @Inject constructor(
                 is Resource.Loading -> {
                     _state.value = GithubInfoState(isLoading = true)
                 }
+                else -> {}
             }
         }.launchIn(viewModelScope)
     }

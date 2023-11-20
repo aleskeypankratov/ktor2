@@ -17,11 +17,11 @@ class GetGithubInfoUseCase @Inject constructor(
         try {
             emit(Resource.Loading())
             val info = repository.getInfo().map { it.toGithub() }
-            emit(Resource.Success(info))
+            emit(Resource.Success<List<Github>>(info))
         } catch (e: ServerResponseException) {
-            emit(Resource.Error(e.localizedMessage?: "Server didn't response"))
+            emit(Resource.Error<List<Github>>(e.localizedMessage?: "Server didn't response"))
         } catch (e: IOException) {
-            emit(Resource.Error(e.localizedMessage?: "Check internet connection"))
+            emit(Resource.Error<List<Github>>(e.localizedMessage?: "Check internet connection"))
         }
     }
 }
